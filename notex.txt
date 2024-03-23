@@ -1,0 +1,10 @@
+docker run \
+    --name restaurant-db \
+    -e POSTGRES_PASSWORD=rishabh \
+    -e POSTGRES_DB=restr \
+    -e POSTGRES_USER=restr \
+    -p 5432:5432 \
+    -d postgres:16
+
+sudo docker start <database_name> --> to start the database in every project
+source .venv/bin/activate --> to activate the environment variable
