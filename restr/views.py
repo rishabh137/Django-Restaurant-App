@@ -25,6 +25,11 @@ def index(request):
     return render(request, "restr/index.html")
 
 
+# def userRegister(request):
+#     # return render(request, "restr/userRegister.html")
+#     return render(request, "restr/index.html")
+
+
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -41,11 +46,11 @@ def registerPage(request):
             messages.success(
                 request, "Account created successfully for " + user.username
             )
-            return HttpResponseRedirect(reverse("restr:login"))
+            return HttpResponseRedirect(reverse("restr:ownerLogin"))
 
     context = {"form": form}
 
-    return render(request, "restr/register.html", context)
+    return render(request, "restr/ownerRegister.html", context)
 
 
 @unauthenticated_user
@@ -64,9 +69,9 @@ def loginPage(request):
         else:
             messages.info(request, "Username or password is incorrect")
 
-    return render(request, "restr/login.html")
+    return render(request, "restr/ownerLogin.html")
 
 
 def logoutUser(request):
     logout(request)
-    return render(request, "restr/login.html")
+    return render(request, "restr/ownerLogin.html")
