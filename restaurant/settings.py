@@ -52,6 +52,10 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+# Stripe payment
+STRIPE_PUBLISHABLE_KEY = os.environ.get("PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+
 
 # Application definition
 

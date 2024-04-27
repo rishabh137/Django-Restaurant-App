@@ -17,15 +17,24 @@ Including another URLconf
 
 from django.urls import path
 from . import views
+from .views import CreateStripeCheckoutSessionView, CancelView, SuccessView
 
 app_name = "restr"
 urlpatterns = [
     path("", views.index, name="index"),
-    # path("", views.userRegister, name="userRegister"),
-    path("register", views.registerPage, name="register"),
-    path("login", views.loginPage, name="login"),
-    path("logout", views.logoutUser, name="logout"),
+    # path("product-detail", views.productDetail, name="product-detail"),
+    path("register/", views.registerPage, name="register"),
+    path("login/", views.loginPage, name="login"),
+    path("logout/", views.logoutUser, name="logout"),
     path("cart/", views.view_cart, name="view_cart"),
     path("add/<int:product_id>/", views.add_to_cart, name="add_to_cart"),
     path("remove/<int:item_id>/", views.remove_from_cart, name="remove_from_cart"),
+    # Stripe payment
+    path(
+        "create-checkout-session/",
+        CreateStripeCheckoutSessionView.as_view(),
+        name="create-checkout-session",
+    ),
+    path("success/", SuccessView.as_view(), name="success"),
+    path("cancel/", CancelView.as_view(), name="cancel"),
 ]

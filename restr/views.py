@@ -21,11 +21,21 @@ from .decorators import unauthenticated_user
 
 from .models import Menu, CartItem
 
+# for stripe
+import stripe
+from django.conf import settings
+from django.views import View
+from django.views.generic import TemplateView
+
 
 # Create your views here.
 def index(request):
     menus = Menu.objects.all()
     return render(request, "restr/index.html", {"menus": menus})
+
+
+# def productDetail(request):
+#     return HttpResponseRedirect(reverse("restr:productDetail"))
 
 
 # def userRegister(request):
@@ -106,3 +116,52 @@ def remove_from_cart(request, item_id):
     cart_item = CartItem.objects.get(id=item_id)
     cart_item.delete()
     return redirect("restr:view_cart")
+
+
+# Stripe payment
+# from .models import Price
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+class CreateStripeCheckoutSessionView(View):
+    def post(self, request, *args, **kwargs):
+        cart_items = CartItem.objects.filter(user=request.user)
+
+        line_items = []
+
+        for item in cart_items:
+            line_items.append(
+                {
+                    "price_data": {
+                        "currency": "inr",
+                        "unit_amount": item.product.price * 100,
+                        "product_data": {
+                            "name": item.product.item,
+                            "description": "placeholder definition for the product",
+                            "images": [
+                                "https://5.imimg.com/data5/TestImages/HT/HC/TC/SELLER-89159197/chhole-bhature-paddler-paper-500x500.jpg"
+                            ],
+                        },
+                    },
+                    "quantity": item.quantity,
+                }
+            )
+
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            line_items=line_items,
+            mode="payment",
+            success_url="http://localhost:8000/success/",
+            cancel_url="http://localhost:8000/cancel/",
+        )
+
+        return redirect(checkout_session.url)
+
+
+class SuccessView(TemplateView):
+    template_name = "restr/success.html"
+
+
+class CancelView(TemplateView):
+    template_name = "restr/cancel.html"

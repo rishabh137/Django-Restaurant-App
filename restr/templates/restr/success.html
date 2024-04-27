@@ -1,0 +1,9 @@
+{% block title %}
+  Success
+{% endblock %}
+{% block content %}
+  <div class="alert alert-success" role="alert">
+    Thanks for purchasing our product
+    <a href="{% url 'restr:view_cart' %}">Go to Products</a>
+  </div>
+{% endblock %}
