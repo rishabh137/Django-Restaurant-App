@@ -140,7 +140,8 @@ class CreateStripeCheckoutSessionView(View):
                             "name": item.product.item,
                             "description": "placeholder definition for the product",
                             "images": [
-                                "https://5.imimg.com/data5/TestImages/HT/HC/TC/SELLER-89159197/chhole-bhature-paddler-paper-500x500.jpg"
+                                # "https://5.imimg.com/data5/TestImages/HT/HC/TC/SELLER-89159197/chhole-bhature-paddler-paper-500x500.jpg"
+                                # "media/img"
                             ],
                         },
                     },

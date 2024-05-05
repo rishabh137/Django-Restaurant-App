@@ -33,6 +33,20 @@
         padding: 10px;
         text-align: center;
       }
+      
+      .buy-now-button {
+        display: block;
+        margin-top: 10px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 10px;
+        font-weight: bold;
+        font-size: 17px;
+        border: 0;
+        border-radius: 5px;
+        text-align: center;
+      }
     </style>
     {% block extra_head %}
 
@@ -85,7 +99,8 @@
     <ul class="product-list">
       {% for menu in menus %}
         <li class="product-item">
-          {% comment %} <img src="{{ product.image.url }}" alt="{{ menu.item }}" width="200" height="150" /> {% endcomment %}
+          <img src="{{ menu.image.url }}" alt="{{ menu.item }}" width="200" height="150" />
+          {% comment %} <img src="{{ menu.image.url }}" alt="" /> {% endcomment %}
           <h2>{{ menu.item }}</h2>
           <p>Price: ₹{{ menu.price }}</p>
           {% comment %} <a href="#" class="buy-now-button">Buy Now</a> {% endcomment %}

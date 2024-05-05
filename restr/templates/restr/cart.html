@@ -23,6 +23,7 @@
       }
       
       .buy-now-button {
+        cursor: pointer;
         display: block;
         margin-top: 10px;
         background-color: #007bff;
@@ -45,6 +46,7 @@
     <div class="product-list">
       {% for item in cart_items %}
         <div class="product-item">
+          <img src="{{ item.product.image.url }}" alt="{{ item.product.item }}" width="200" height="150" />
           <p>{{ item.product }} ({{ item.quantity }})</p>
           <p>Price: ₹{{ item.product.price }}</p>
 

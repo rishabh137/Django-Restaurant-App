@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Menu(models.Model):
     item = models.CharField(max_length=200)
     price = models.IntegerField(max_length=100)
+    image = models.ImageField(upload_to="img", default="")
 
     def __str__(self):
         return self.item
