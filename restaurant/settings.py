@@ -34,7 +34,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ["localhost"]
 # ALLOWED_HOSTS = [".vercel.app", ".now.sh"]
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = ["localhost", ".vercel.app"]
 
 SITE_ID = 1
 
@@ -115,7 +115,7 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = "restaurant.wsgi.application"
+WSGI_APPLICATION = "restaurant.wsgi.app"
 
 
 # Database
