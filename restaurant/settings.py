@@ -121,16 +121,16 @@ WSGI_APPLICATION = "restaurant.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "restr",
-        "USER": "restr",
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": "0.0.0.0",
-        "PORT": 5432,
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "restr",
+#         "USER": "restr",
+#         "PASSWORD": os.environ.get("DB_PASSWORD"),
+#         "HOST": "0.0.0.0",
+#         "PORT": 5432,
+#     }
+# }
 
 
 # Password validation
