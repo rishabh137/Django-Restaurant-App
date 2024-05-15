@@ -180,6 +180,3 @@ STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-
-# STATIC_URL = "static/"
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
