@@ -111,7 +111,7 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = "restaurant.wsgi.app"
+WSGI_APPLICATION = "restaurant.wsgi.application"
 
 
 # Database
