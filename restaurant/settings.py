@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
-from decouple import config
 
 from dotenv import load_dotenv
 
@@ -32,11 +30,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# ALLOWED_HOSTS = ["localhost"]
-# ALLOWED_HOSTS = [".vercel.app", ".now.sh"]
-ALLOWED_HOSTS = ["localhost", ".vercel.app"]
+DEBUG = False
+ALLOWED_HOSTS = ["*"]
 
 SITE_ID = 1
 
@@ -110,7 +105,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                # "django.template.context_processors.request",
             ],
         },
     },
@@ -123,18 +117,18 @@ WSGI_APPLICATION = "restaurant.wsgi.app"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "restr",
-        "USER": "restr",
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": "0.0.0.0",
-        "PORT": 5432,
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "restr",
+#         "USER": "restr",
+#         "PASSWORD": os.environ.get("DB_PASSWORD"),
+#         "HOST": "0.0.0.0",
+#         "PORT": 5432,
+#     }
+# }
 
-DATABASES["default"] = dj_database_url.config()
+# DATABASES["default"] = dj_database_url.config()
 
 
 # Password validation
@@ -180,3 +174,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+# Render PostgreSQL database
+import dj_database_url
+
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
